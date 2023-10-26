@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Learning</title>
+    <style>
+        .bg-black{
+            background-color: #212121;
+            color: #fff
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div>
+        <h1 id="heading">we are learning <span style="display: none;">DOM</span> manupulation</h1>
+    </div>
+</body>
+<script>
+    // console.log(document.getElementById('heading'));
+    // console.log(document.getElementsByClassName('bg-black')) // return all the elemet with same class name and return HTMLCollection
+
+    // document.getElementById('heading').className
+    // console.log(document.getElementById('heading').getAttribute('id')) // heading
+    // document.getElementById('heading').setAttribute('class', 'test')
+
+    // const heading = document.getElementById('heading')
+    // heading.style.color = "gray"
+
+
+    let heading = document.querySelector('h1')
+    console.log(heading.innerHTML) //we are learning <span style="display: none;">DOM</span> manupulation
+    console.log(heading.innerText) //we are learning manupulation
+    console.log(heading.textContent) //we are learning DOM manupulation
+
+    document.querySelector('#heading') // will select the first element if multiple are there
+    document.querySelectorAll('#heading') // will select all and return as a NodeList
+</script>
+</html>

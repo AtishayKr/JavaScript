@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+    <style>
+        .bg-black{
+            background-color: #212121;
+            color: #fff
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+    <script>
+        
+        const addLanguage = (language) => {
+            const li = document.createElement('li');
+            li.innerHTML = `${language}`
+
+            const addLanguage = document.querySelector('.language');
+            addLanguage.appendChild(li);
+        }
+
+        const addLanguageOptimized = (language) => {
+
+            const li = document.createElement('li');
+            li.appendChild(document.createTextNode(language))
+
+            document.querySelector('.language').appendChild(li);
+        }
+
+        // addLanguage('C++');
+        addLanguageOptimized('C++');
+
+        //EDIT
+        
+        const secondLang = document.querySelector('li:nth-child(2)')
+        //first method
+        // secondLang.innerHTML = "JAVA";
+
+        //second method
+        const newLi = document.createElement('li');
+        newLi.textContent = "JAVA";
+        secondLang.replaceWith(newLi);
+
+        //delete the element
+        const firstLang = document.querySelector('li:first-child')
+        firstLang.remove();
+
+    </script>
+</html>
