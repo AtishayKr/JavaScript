@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121;">
+
+    <button id="orange">Orange</button>
+    <button id="green">Green</button>
+    
+</body>
+
+<script>
+
+    //Lexical scoping
+    // function outer(){
+
+    //     let outer = "outer";
+
+    //     function inner() {
+
+    //         console.log(outer);
+    //     }
+
+    //     inner();
+    // }
+    // outer();
+
+    // Closure
+    function outer() {
+        let username = "outer"
+        function inner(){
+            console.log(username);
+        }
+        return inner;
+    }
+
+    const myFunc = outer()
+    myFunc()
+</script>
+
+<script>
+
+    /*   Real life example of Closer        */
+
+    // document.querySelector('#orange').addEventListener('click', ()=>{
+    //     console.log("orange clicked")
+    //     document.querySelector('body').style.backgroundColor = "orange"
+    // })
+    // document.querySelector('#green').addEventListener('click', ()=>{
+    //     console.log("green clicked")
+    //     document.querySelector('body').style.backgroundColor = "green"
+    // })
+
+    
+
+    // function changeColor(color){
+
+    //         document.querySelector('body').style.backgroundColor =  `${color}`
+    // }
+    // document.querySelector('#orange').addEventListener('click', changeColor)  // if we use this we can't able to pass the color in function
+    // document.querySelector('#orange').addEventListener('click', changeColor('orange'))  // if we use this function will call automaticaly and color will change without clicking the button
+
+    //hence we use closer
+    function changeColor(color){
+        console.log("atishay")
+
+        return function innerFun(){
+
+            document.querySelector('body').style.backgroundColor =  `${color}`
+        }
+    }
+
+    document.querySelector('#orange').addEventListener('click', changeColor('orange')) // here changeColor('orange') will return innerFun refrence, 
+    //and after clicking the button innerFun will execute and and since variable color is in lexical scope this will accessable to innerFun
+    document.querySelector('#green').addEventListener('click', changeColor('green')) 
+    
+</script>
+</html>
