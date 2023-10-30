@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: white;">
+
+    <h2>Amazing images</h2>
+    <div>
+        <ul id="images">
+            <li id="photoshop"><img width="200px" height="120px" id="delhi" src="./dlehi.jpeg" alt="delhi pic"></li>
+            <li id="photoshop"><img width="200px" height="120px" id="kolkata" src="./kolkata.jpeg" alt="kolkata pic"></li>
+            <li id="photoshop"><img width="200px" height="120px" id="mumbai" src="./mumbai.jpeg" alt="mumbai pic"></li>
+            <li id="photoshop"><img width="200px" height="120px"  id="pune" src="./pune.jpeg" alt="pune pic"></li>
+            <li id="google"><a style="color: white;" href="https://www.google.com/" id="google"> google</a></li>
+        </ul>
+    </div>
+
+    <script>
+        // document.getElementById('delhi').onclick = function(e){ //onclick does not give much information that's why we use the below method most of the time
+        //     // alert("delhi clicked")
+        //     console.log(e)
+        // }
+
+        /*   what to study      */
+        // type, timestamp, defaultPrivented, 
+        // terget, toElement, srcElement, currentTarget, 
+        // clientX, clientY, screenX, screenY, offsetX, offsetY
+        // altkey, ctrlkey, keycode
+
+
+        /* Event Propegation    */       // types => eventBubbling (defalut),            eventCapturing
+        // document.getElementById('delhi').addEventListener('click',(e)=>{ //modern way to use event
+        //     // alert("delhi clicked")
+        //     console.log(e)
+        // }, false) // here false means event propegation is set on eventBubbling which is bydefault set {if set nothing then also its bydefault false}
+
+        /*                    example of event bubbling                         */
+        // // in this example 'image' is parent parent class and 'delhi' is its child calss, 
+        // // when we clicked on delhi first it will print "clicked on delhi" and then it will print "clidked on images"
+        // // this phenominon of inside to outside is known as bubbling
+        //  document.getElementById('images').addEventListener('click',(e)=>{ 
+        //     console.log("clicked on images")
+        // }, false)
+        //  document.getElementById('delhi').addEventListener('click',(e)=>{ 
+        //     console.log("clicked on delhi")
+        // }, false)
+
+
+        /*                     example of event capturing                           */
+        // // in this example 'image' is parent parent class and 'delhi' is its child calss, 
+        // // when we clicked on delhi first it will print "clicked on images" and then it will print "clidked on delhi"
+        // // this phenominon of outside to indside is known as capturing
+        //  document.getElementById('images').addEventListener('click',(e)=>{ 
+        //     console.log("clicked on images")
+        // }, true)
+        //  document.getElementById('delhi').addEventListener('click',(e)=>{ 
+        //     console.log("clicked on delhi")
+        // }, true)
+
+        // /*                    stop the propogation                               */
+        // document.getElementById('images').addEventListener('click',(e)=>{ 
+        //     console.log("clicked on images")
+        //     // e.stopPropagation(); // In case of capturing we need to stopPropagation on parent element because it is propogated top to bottom
+        // }, false)
+        //  document.getElementById('delhi').addEventListener('click',(e)=>{ 
+        //     console.log("clicked on delhi")
+        //     console.log(e)
+        //     e.stopPropagation()  // It is used to stop the propogation 
+        //     // In case of bubbling if we want to stop propogation we need to add stopPropogation on child element because it is propogated bottom to top
+        // }, false)
+
+        /*        example of prevent default                               */
+        // document.getElementById('google').addEventListener('click', (e)=>{
+        //     e.preventDefault();  //used to stop the default behaviour
+        // })
+
+
+        document.getElementById('images').addEventListener('click', (e)=>{
+            console.log(e);
+            console.log(e.target.tagName)
+            // console.log(e.currentTarget);
+            if(e.target.tagName == 'IMG') {
+
+                console.log(e.target.parentNode);
+                let removeIt = e.target.parentNode;
+                // removeIt.remove()
+                removeIt.parentNode.removeChild(removeIt);
+            }
+        }, false)
+    </script>
+    
+</body>
+</html>
